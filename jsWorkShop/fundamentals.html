@@ -1,0 +1,338 @@
+functional programming:
+it's about breaking your code to verbs?
+oop is like nouns?-it's easier to think this way
+but functional prog think of it in actions
+ex) building house
+oop:windows 
+func:setting up windows
+func prog is a style 
+
+<script>
+	//constructing person object
+	//data: object literal
+	var person = {};
+	//we store primitive value with the variable name 
+	person.name = "Mrs.white"; //accessing name property
+	//proeprty name holds a reference to mrs white
+	//who has holds its own block in the memory 
+	var who = person.name; 
+	who;//mrs.white
+	person.name = "Mr.white"
+	who;//remains the same, we saved primitive value. primitive value: string, number, boolean, null, undefined -> pass by value. it gets its own spot in memory
+	//non primitive: object,array, function ->pass by reference we have pointers in memory. you often share same spot in memory. so if you change something it can change other. so unexpected value. 
+	//string vs array-> when operating with an array you want to copy the array because you can have side effects the array getting modified unexpected. immutable vs mutable 
+	who.story;//undefined because story hasn't defined anywhere yet. 
+	var person = {
+		name:"mrs.White" 
+	} 
+
+	var person = [];
+	person.name = "Mrs.White";
+	var who = person.name;
+	who; //MRs.white
+	//we have property in arrays, arrays are objects the rules are the same
+	//we can use dots for the array
+	typeof who === "array"; //false
+	typeof who === "object"; //true
+	//arrays are objects,
+	//the difference is arrays have cool methods such as arrays.push/arrays.pop 
+	person[0] = "I wasn't in the room"; //so zero is just a property. Person has name that points to mrs white and zero that points to the string
+	//person.0 is an error
+	//we use brackets when the value isn't supposed to be string literal, so number
+	person[plea] = "I would never"//we don't have anything attach to plea
+	var plea = "wouldShe" 
+	person[plea] = "I would never" //wouldShe is the property name
+	person["plea"] = "I would never" //this one plea is the property name 
+	person.plea //we can do this way too 
+
+	//rules about objects and arrays:
+	//arrays are the type of objects that has methods
+	//property string can't be passed without quotes in the brackets
+	//using the dot notation coherses to string where bracket doesn't. can't use .number because it's an invalid syntax
+	//so we have to use brackets 
+
+	//objects
+	var box = {};
+	box['material'] = "cardboard"
+	box[0] = 'meow'; //nothing special about array box[0], you can set zero property in an ojbect
+	box['^&*'] = "testing"; //try not to use invalid sytanx though, putting quotes around it's fine but
+
+	var test = box['^&*'];
+	--------------------------
+	box = {
+		"material":"cardboard",
+		"0":"meow",
+		"^&*":"testing"
+	}
+	//method vs property 
+	//y.pop() vs y.length //notice there's no () 
+	//array is special because it has length properties, it has indicies
+
+	//Excercise
+	//create an object using bracket and dot notation that 
+	//represents the character and related data you may find a game of clue
+	//pieces for characters, cars, weapons, rooms, card-confidential=murder, room,weapon/ figure out which  cards are in the envelop. figure out which card is missing. 
+	//data:character. weapon. rooms 
+
+	var game = {};
+	game.murder = "??";
+	game["weapon"] = [
+	'lasers',
+	'angry cats', 
+	'soap'
+	]
+	//we use  array data structure rather than array here because since it's a collection of things that are the same, so it's like a list of weapons
+	//objects are like documents, make bigger things with it.
+
+	//object has a key and a value 
+	game["weapon"] = [
+	{type: 'lasers', location:'lab'},
+	{type:'angry cats',...}. 
+	{'soap', } 
+	];
+	game.name = [];
+	game.name[0] = 'Miss Scarlet';
+	game.push('Mr.Green')//puts at the back, here we are pushing to the object so it should be 
+	game.name.push('Mr.Green'); 
+	//we can use dots only when it's string 
+	//we can use brackets every time. 
+	//we use dots just to save characters, less type 
+
+	//destruction
+	//defining variables and taking them outside 
+	var obj = {first:'dan', last:'coelho'};
+	var first = obj.first;
+	var last = obj.last;
+	//array destruction
+	//we are creating variables first and second
+	const[first, second] = [true, false];
+	//first is true 
+	//second is false 
+	//because it's in order
+	let[first, second] = [true, false];
+	//we create variables on the left and on the right is the source. 
+
+	//it;s less verbose 
+	//assignment using variables already exist
+	[first, second] = [true, false];
+
+	const[c, d, e] = [1, 2 ,3]
+	c = 3 //error 
+	const j = {x:1}
+	j.x = 3 //this works 
+	//we are not changing j but we are editing the property of j 
+	j = {} //this will give you an error 
+	//primitive works but non primitive doesn't work as expected 
+	//let allows you to reassign but let has scope. it has block scope. that's the difference between let and var. 
+	const{fist, second} = {first:0, second:1}
+	//property name and the target decoration have the same name 
+	let(first, second) = {first:0, second:1}
+	//it's working because of the names match.objects don't have orders so the names match 
+	//whenever you are using an object and think need an order use an array
+
+	//destruction allows less typing for assigning value to a variable. 
+
+	const {name, room, weapon} ={name:"rusty", room:"kitchen", weapon:"candlestick"}; 
+	//es5
+	var obj ={name:"rusty", room:"kitchen", weapon:"candlestick"}; 
+	name = obj.name;
+
+	//destructing a value:
+	var[a, b] = [1, 2];
+	//omit ertain value
+	var[a, ,b] = [1, 2, 3];
+	//spread rest operator
+	var[a, ...b] = [1, 2, 3];
+	//1[2,3] 
+	var a = 1, b = 2;
+	b === 1
+	a === 2
+	//need to create a temporary value
+	var tmp = a;
+	a = b;
+	b = tmp; 
+	//we can simply do 
+	[b, a] = [a, b]
+
+	//list transformation: 
+	//
+	const game = {};
+	game['suspects'] = [];
+	game.suspects.push({
+		name:"Rusty",
+		color:"orange "
+	})
+	game.suspects[1] = {
+		name:"miss scarlet",
+		color:"red"
+	}
+	const game = {
+		'suspects' :[
+			{
+				name:"rusty",
+				color:"orange"
+			},
+			{
+				name:"miss scarlet",
+				color:"red"
+			}
+		]
+	}
+	game["suspects"]//it will return array with suspects object in it 
+	//loop through suspects array 
+	function foo(){
+		//advances through array using an iterable variable
+
+		//object don't have length
+		//game.length itself is undefined
+		//game.suspects is the array 
+		for(let i = 0; i < game.suspects.length; i++) {
+			console.log(game.suspects[i]); //i isnt a property so we can't use dot 
+		}
+		//arrays have numerical value so it associates well 
+		for(let key in obj) {
+			obj[key];
+		}
+	}
+	foo();
+	//loop through all the suspects in the array and mark the suspect 
+
+	var gameLoop = function() {
+		for(var i =0; i <game.suspects.length; i++){
+			for(var key in game.suspects[i]){
+				if(game.suspects[i][key] === "rusty") {
+					console.log("found them")
+				}
+				else{
+					console.log("not this time")
+				}
+			}
+		}
+	}
+	//first loop runs 2times
+	//second loop runs 4times
+
+	//destructure the nested data structure into two variables with the strings red and orange 
+
+	const firstColor = game.suspects[0].color;
+	const secondColor = game.suspects[1].color;
+
+	var [color1, color2] = [suspects[0].color, 
+		suspects[1].color];
+
+	var[{color:firstColor}, {color:secondColor}] = 
+	suspects
+
+	//returning an object
+	//it has name property 
+	function CreateSuspectObjects(name) {
+		return {
+			name:name,
+			color:name.split(' ')[2].
+			// speak: function() {
+			// 	console.log("my name is" , name)
+			// }
+			speak() {
+				console.log("my name is", name);
+			}
+		};
+	
+
+	var suspects = ['Miss Scarlet',  'Colonel Mustard', 'Mr.White'];
+	var suspectsList = []; 
+
+	x = CreateSuspectObjects("Miss Scarlet")
+	for(var i  = 0; i <suspects.length; i++) {
+		suspects = CreateSuspectObjects(suspects[i])
+		suspectsList.push(suspects)
+	}
+
+	//each takes two functions
+	//first:list, second:call back function, iteratible function
+	_.each(suspects, function(name){
+		let suspectObj = CreateSuspectObjects(name);
+		susppectList.push(suspectObj);
+	})
+	//we are abstracting loop into function here. each is a function. 
+	//each: used for looping through list
+	//for each vs eac
+	//for each is called on the array itself as oppose to taking the array as argument. 
+	//_ is a library, it has a dot so we know _ is an object. 
+
+	var rooms = ['observatory', 'ballroom', 'library']
+	var  logger = function(val) {
+		console.log(val);
+	} ;
+	_.each(rooms, logger);
+
+	const_ = {};
+	_.each = function(list, callback){
+		//
+		//if(typeof list === "array") //array is an object, so it will return false
+		if(Array.isArray(list)) {
+			//loop through array
+			for(var i = 0; i < list.length; i++) {
+			//call the callback with a list item
+				callback(list[i], i, list)
+			}
+
+		}else{
+			//loop through object
+			for(var key in list){ //key is not numeric so we use[]
+				callback(list[key], key, list)
+			}
+					//call the callback with a list item
+		}
+
+	}
+	_.each(['202', '312', '231'], function(name, i, list) {
+		if(list[i+1]){
+			console.log(name, 'is younger than', list[i+1])
+		}else{
+			console.log(name, 'is the oldest')
+		}
+	})
+	_.map([1,2,3], function(v, i, list) {
+		console.log(v)
+	}) //it will return undefined 
+
+	//each function doesn't return anything
+	//map returns an array every time. 
+	//we use it to take a list and transform it into a new array. 
+	//whatever the function returns will go to the object.
+
+	const weapons = ['pipe', 'stick'];
+	const makeBroken = function(item) {
+		return 'broken ${item}';
+	};
+	_.map(weapons, makeBroken)
+	//return an array
+	//will reeturn broken pipe, broken stick
+	['broken weapons', 'broken stick'];
+
+	function CreateSuspectObjects(name) {
+		return {
+			name:name,
+			color:name.split(' ')[1],
+			speak() {log('my name is ${this.name}');}
+		};
+	};
+	var suspects = ['miss scarlet', 'colonel mustard'];
+	var suspectsList = _.map(suspects, function(name){
+		return CreateSuspectObjects(name);
+	})
+	_.each(suspects, function(suspect){
+		suspect.speak()
+	})
+
+	//map returns an array while each doesn't 
+	//they both iterate through lists 
+
+	const _ = {};
+	_.map = function(list, callback){
+		//create an emtpy array to store 
+		//check if array
+		//return[]
+	}
+
+</script>
