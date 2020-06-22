@@ -1,0 +1,252 @@
+html is like reading english, you don't run it.
+it's static. it's base building block is the tag 
+ex) <h1>this content is inside the tag</h1>
+often tags have other tags inside it 
+h1 = header h2=second level ... h6 
+with css you can change the look 
+we use tag 1)for ethical reason(blind ppl) 2)readability/maintability/reusability 3)google look for tags
+void tag: self closing tag ex)<input /> => allows users to put something in a box. 
+p tags, - paragraph:only texts can go in there. no tags
+a anchor - links: <a href="naver.com">naver</a> href is the attribute
+div - division, cardboard box. no meaning put stuff into it, useful for styling css 
+span - small block snippset, it's like ziploc bag 
+ol- ordered list, instead of bullet there's number 
+ul -unordered list
+li -list 
+it's like<ul><li>bob</li><li>sammy</li></ul>
+button- can be used with javascript, without javascript it's just a clickable button. <button>click me</button>
+img - self tag, give it a source to the pic, giving alt as an attribute too. <img src ="www.pic.com/pic/1" alt="always need it"/> you can put img with css too. css can't do alt tag. 
+input- people can type into. there's many various  inputs. 
+textarea- instead of input, larger input for larger text. it's not self closing tag.
+select, option- <select><option value="seattle">seattle</option><option value="vancouver">vancouver</option>
+<form>-grouping stuff like input, textarea
+table- it's like a making table in word, excel. not good for style. <table><tr><td>(0,0)</td><td>(1,0)</td></tr></table> 
+there are tags like nav, article,
+comments- <!-- this is a comment --> to make it readable/understandable/no need to be clever, comment! 
+
+attribute, need additionall data for tag. such as <input type="checkbox" /> input is the tag and type is the attribute. for instance <input type="number" /> you can only put number here 
+not all tags have attribute
+types of attributes for inputs
+<input value="prefilled value" />
+<input placeholder="grey placeholder" />
+<input type="checkbox" checked/> it;s like checked=true
+<input type="radi" checked>
+<input type="radi" disabled checked>
+<input type="checkbox" value"#FF0000" />
+
+classes:labeling different kind of div with classes 
+if it's div then it's green. but so many divs, so using classes labeled classes are only green
+classes are used only by you so name good things
+<div class="header">
+	<h1 class="header-title">heloo</h1>
+	<div class ="post">
+		<p class="post-text">djlkj
+		</p>
+	</div>
+	<div class ="post">
+		<p class="post-text">still usable
+		</p>
+	</div>
+	<div id="only-one">
+		<p>don't use id alot. it's like a sledge hammer</p>
+	</div>
+</div>
+
+you can have multiple classes, but only one id. so it's unique
+it's not reusable so not used alot. 
+ids are useful for linking, directing me directly to that point. browser navigates to that point
+<a href="#idname">link</a>
+naming:	write a good name. with classes name things semantically-what it does not what it looks like. looks change all the time, name it with something that sticks. ex)post-title, blog-title, not boldtitle or redtitle
+html isn't case sensitive so camel case is useful
+so use kehab-case 
+
+html-base structure-boiler plate 
+<!DOCTYPE html> <!--to let the browser we are doing html5, should be at the top --> 
+<html lang="en"> <!--everything needs to go inside html, we are saying we are submitting english document --> 
+<head> <!--head and header are different, in head all the meta informations go here--> 
+	viewport goes here too, you can't really see but stuff to configure the website. like mobile screen size info
+	<title>title goes here</title>
+</head>
+<body>
+
+</body>
+
+</html>
+html and javascript files will be in seperate and will be linked with a script tag. same with css using link tag.
+you can use style tag but not used it often. 
+
+css-cascading style sheet
+its a series of rules: if it's that then apply this
+using selector h1
+h1{
+	color:red; color is called a property, red is called a value that css understands. and theres a semicolon 
+	font-size: 60px; there's many measurements beside px and em
+	em is for relative size. px is an absolute size. em is relative to font size. 
+	font-weight:normal; you can make it bold, light 
+	text-decoration: underline;
+	text-transform: uppercase;
+	border: 3px solid pink; combining css properties, short hand
+
+}
+parents and children:
+div{
+	color:blue;
+}
+<div>
+<h1>h1 is the child and div is the parent
+</h1>
+</div>
+because h1 is inside div it will be blue. child follows parent 
+
+div, h1 takes the whole line.
+span specific block 
+
+ol{
+	list-style:upper-roman;
+}
+you can do list-style:square even for ol but dont
+cascade:
+	.branding {
+		clolr:red; . is for class
+	}
+	don't style on tags, style on classes.
+	style on tags only if you want the effect on every single one. 
+	go with classes! 
+cascade: two css clsses that have conflicting classes. 
+.other-title{
+	color:red
+}
+.title{
+	color:red;
+}
+.title{
+	color:green
+}
+the one that comes later withs
+<h1 class="title other-title">cool title</h1>
+it will be green. the one that comes down will always win
+but not a good idea to have same two class names.
+.main {
+	border:1px solid black;
+	color:red;
+}
+.title{
+	color:green;
+}
+color is green but there's border
+we are cascading down to one summary effeect.
+
+specificity: two selectors are equal since they have the same specificity.
+keep everything simple as it gets deeper
+
+when there are multiple classes more specific one has higher specificity
+.main-brand-3.title-3{//no space between classes
+	color:red;
+}
+.title-3{
+	color:green
+}
+<h1 class="title-3 main-brand-3">brand</h1>
+it w ill be red
+<h1 class="title-3"> this is green because must match all.</h1> 
+classes are more specific than tags 
+h1.titile{ shouldn't mix tag and classes usually
+	color:red
+}
+.main.titile{
+	color:green //this wins 
+}
+
+//don't use this, it's a wrecking ball. very strong 
+styling id, one id overpowers
+/* this is how you do 
+ *
+ *no need for stars
+ *but still this is how
+ *you do comment
+ */
+#id{
+	color:red;
+}
+.nav.hdd{
+	color:green
+}
+id overrides it
+h1{
+	color: green !important;
+}
+!important overrides everything
+don't use id and !important. 
+
+some wrote it with class
+then re wrote it with another class 
+but then someone wrote with id(you can oonly do one id)
+combining id with class isn't good though
+then someone with important
+not good! 
+use dev tools to avoid this. 
+
+pseudoclass:ex)hover mouse there and change. (hover class)
+.hover-example {
+	background-color:black;
+	width:150px;
+	height:150px;
+}
+.hover-example:hover { /*using hover class next : 
+	background-color:crimson;
+	width:150px;
+	height:150px;
+}
+hover is a class so it's specificity is a class 
+.hover-example.hover-example { /*this one has the specificity 
+	background-color:red;
+	width:150px;
+	height:150px;
+}
+but at the bottom so it will be red
+
+another pseudoclass is first-child
+.first-child-example{
+	color:crison;
+}
+.first-child-example:first-child{
+	color:green;
+}
+.first-child-example:nth-child(2n+1){
+	color:red;
+}
+<ol>
+	<li class="first-child-example">first</li>
+	<li class="first-child-example">second</li>	
+	<li class="first-child-example">third</li>	
+</ol>
+<style>
+	*{
+		color:red;
+		box-sizing: border-box; //
+	}
+	specificity of zero, it selects/applies all
+</style>
+you don't really need float but we used to use alot 
+float: left; go as far as you can. kept pushing to the left 
+there's a better way to do it, and it'called flex 
+
+div usually take the whole line unless you do something like float 
+
+Box model 
+display:what mode measurement is made by 
+display:block// 100percent width
+display:span //display inline 
+display:inline
+display:inline-block
+display:flex 
+display:grid
+
+//padding is inside the the border
+//margin is outside the border
+.example{
+	border: 3px solid red;
+	padding: 5px;
+	margin:25px; 
+	background-color:white;
+}

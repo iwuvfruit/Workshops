@@ -335,4 +335,60 @@ func prog is a style
 		//return[]
 	}
 
+	const videoData = [
+		{
+			name:'Miss Scarlet',
+			present:true
+			room:[
+				{kitchen:false},
+				{ballroom: false}
+			]
+		}, 
+		{
+			name:'Mrs.white'
+			present:true
+			room:[
+				{bedroom:false}
+			]
+		}
+		{
+			name:'Mr.Chang'
+			present:false
+			room:[
+				{bedroom:false}
+			]
+		}
+	]
+	//filter takes an array and a callback
+	//this will return a new array that will only contain true from a callback
+	//the array can be shorter 
+	
+	const _ = {};
+	_.filter = function(arr, cb) {
+		//create a new array
+		const storage = [];//const if non primitive value
+		//loop through arr
+		for(let i = 0; i < arr.length; i++) {
+			//check if cb returns true
+			if(cb(arr[i], i, arr) === true) {
+				//if returns true, push into array
+				storage.push(arr[i])
+			}
+		}
+		//return arr
+		return storage; 
+
+	}
+	_.filter = function(arr, cb) {
+		const = storage = [];
+		_.each(arr, function(item, i, list) {
+			if (cb(item, i, list)) storage.push(item);
+		});
+	}
+
+	//using call backs instead of loops 
+	_.filter(videoData, function(suspectObj) {
+		return suspectObj.present
+	}
+	)
 </script>
